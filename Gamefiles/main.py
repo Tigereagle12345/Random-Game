@@ -3,7 +3,7 @@ import os
 import getpass
 
 def get_users():
-  
+  from main import list_of_users
 
 def create_user():
   username = str(input("Enter Username: "))
