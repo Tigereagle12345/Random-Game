@@ -58,4 +58,14 @@ def login(people):
     print("Incorrect Username or Password\n")
     login(people)
     
-
+def start():
+  print("What would you like to do?")
+  starttype = str(input("1. Login to an existing account\n2. Create an account: "))
+  if starttype == "1":
+    people = get_users()
+    login(people)
+  elif starttype == "2":
+    create_user()
+  else:
+    print("Action unavalible, please try again.\n")
+    start()
