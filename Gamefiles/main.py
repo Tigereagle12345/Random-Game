@@ -4,12 +4,12 @@ import getpass
 
 def get_users():
   from users import list_of_users
-  users = list_of_users.keys()
+  people = list_of_users.keys()
   
-  return users
+  return people
 
-def user_exists(username, users):
-  if username in users:
+def user_exists(username, people):
+  if username in people:
     valid = False
   else:
     valid = True
@@ -19,12 +19,12 @@ def user_exists(username, users):
 def create_user():
   username = str(input("Enter Username: "))
   password = getpass.getpass(prompt="Enter Password: ")
-  password = hash(password)
+  password = hash(password) 
   hp = 10
   items = {}
-  money = 50
-  users = get_users()
-  valid = user_exists(username, users)
+  money = 50.00
+  people = get_users()
+  valid = user_exists(username, people)
   if valid == True:
     print("Creating User...")
     from users import list_of_users
@@ -34,12 +34,22 @@ def create_user():
     f = open("users.txt", "w")
     f.write(list_of_users)
     f.close
+    print("User Created\n ")
+    login(people)
   else:
     print("User already exists. \n ")
-    create_user()
+    create_user(people)
     
-def login():
+def login(people):
   username = str(input("Enter Username: "))
   password = getpass.getpass(prompt="Enter Password: ")
   password = hash(password)
-  
+  from users import list_of_users
+  pass_hash = list_of_users[username]["password"]
+  if password == pass_hash and username in people:
+    money = list_of_users[username]["money"]
+    hp = list_of_users[username]["hp"]
+    items = list_of_users[username]["items"]
+  else:
+    print("Incorrect Username or Password")
+    
