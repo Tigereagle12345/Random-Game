@@ -1,6 +1,7 @@
 import random
-import osprint
+import os
 import getpass
+import json
 
 def get_users():
   from users import list_of_users
@@ -17,8 +18,9 @@ def user_exists(username, people):
   return valid
   
 def create_user():
-  username = str(input("Enter Username: "))
-  password = getpass.getpass(prompt="Enter Password: ")
+  print("Please create your account")
+  username = str(input("Enter Account Username: "))
+  password = getpass.getpass(prompt="Enter Account Password: ")
   password = hash(password) 
   hp = 10
   items = {}
@@ -30,10 +32,11 @@ def create_user():
     from users import list_of_users
     print(list_of_users)
     list_of_users[username] = {"password": password, "hp": hp, "items": items, "money": money}
-    open("users.txt", "w").close()
-    f = open("users.txt", "w")
-    f.write(list_of_users)
-    f.close
+    open("users.py", "w").close()
+    with open("users.py", "w") as file:
+      file.write("list_of_users = ")
+      file.write(json.dumps(list_of_users))
+      file.close
     print("User Created\n ")
     login(people)
   else:
@@ -50,6 +53,7 @@ def login(people):
     money = list_of_users[username]["money"]
     hp = list_of_users[username]["hp"]
     items = list_of_users[username]["items"]
+    print("Logged In!")
   else:
-    print("Incorrect Username or Password")
-create_user()
+    print("Incorrect Username or Password\n")
+    login(people)
