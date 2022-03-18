@@ -3,7 +3,7 @@ import osprint
 import getpass
 
 def get_users():
-  from main import list_of_users
+  from users import list_of_users
   users = list_of_users.keys()
   
   return users
@@ -27,7 +27,7 @@ def create_user():
   valid = user_exists(username, users)
   if valid == True:
     print("Creating User...")
-    from main import list_of_users
+    from users import list_of_users
     print(list_of_users)
     list_of_users[username] = {"password": password, "hp": hp, "items": items, "money": money}
     open("users.txt", "w").close()
@@ -41,4 +41,5 @@ def create_user():
 def login():
   username = str(input("Enter Username: "))
   password = getpass.getpass(prompt="Enter Password: ")
-  password = 
+  password = hash(password)
+  
