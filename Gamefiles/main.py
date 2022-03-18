@@ -19,6 +19,7 @@ def user_exists(username, users):
 def create_user():
   username = str(input("Enter Username: "))
   password = getpass.getpass(prompt="Enter Password: ")
+  password = hash(password)
   hp = 10
   items = {}
   money = 50
@@ -36,3 +37,8 @@ def create_user():
   else:
     print("User already exists. \n ")
     create_user()
+    
+def login():
+  username = str(input("Enter Username: "))
+  password = getpass.getpass(prompt="Enter Password: ")
+  password = 
