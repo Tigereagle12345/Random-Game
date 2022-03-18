@@ -52,4 +52,4 @@ def login(people):
     items = list_of_users[username]["items"]
   else:
     print("Incorrect Username or Password")
-    
+create_user()
