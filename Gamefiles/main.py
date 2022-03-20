@@ -48,7 +48,7 @@ def add_user_account(username, password):
   items = [ ]
   money = 50.00
   status = "Offline"
-  print("Opening sprea")
+  print("Opening spreadsheet...")
   scopes = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
   credentials = ServiceAccountCredentials.from_json_keyfile_name("python-game-344621-1c97bcf83064.json", scopes) 
   file = gspread.authorize(credentials)
@@ -59,6 +59,7 @@ def add_user_account(username, password):
   for cell in sheet.col_values(1):
     num = num + 1
   row = num + 1
+  print("Adding user...")
   sheet.update_acell("A" + str(row), username)
   sheet.update_acell("B" + str(row), password)
   sheet.update_acell("C" + str(row), hp)
@@ -67,6 +68,7 @@ def add_user_account(username, password):
   sheet.update_acell("F" + str(row), status)
 
   people = get_users()
+  print("User " + username + " added!\n")
 
   return people
     
@@ -86,6 +88,18 @@ def create_user():
     print("User already exists. \n ")
     create_user(people)
     
+def login_sheets(username):
+  scopes = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+  credentials = ServiceAccountCredentials.from_json_keyfile_name("python-game-344621-1c97bcf83064.json", scopes) 
+  file = gspread.authorize(credentials)
+  sheet = file.open("Python_MUO_Google_Sheet")
+  sheet = sheet.sheet1
+  
+  row = list_of_users[]
+  print("Adding user...")
+  sheet.update_acell("F" + str(row), status)
+
+
 def login(people):
   username = str(input("Enter Username: "))
   password = getpass.getpass(prompt="Enter Password: ")
