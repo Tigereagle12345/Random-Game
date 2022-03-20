@@ -88,15 +88,14 @@ def create_user():
     print("User already exists. \n ")
     create_user(people)
     
-def login_sheets(username):
+def login_sheets(username, status):
   scopes = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
   credentials = ServiceAccountCredentials.from_json_keyfile_name("python-game-344621-1c97bcf83064.json", scopes) 
   file = gspread.authorize(credentials)
   sheet = file.open("Python_MUO_Google_Sheet")
   sheet = sheet.sheet1
   
-  row = list_of_users[]
-  print("Adding user...")
+  row = list_of_users[username]["row"]
   sheet.update_acell("F" + str(row), status)
 
 
@@ -109,6 +108,7 @@ def login(people):
     money = list_of_users[username]["money"]
     hp = list_of_users[username]["hp"]
     items = list_of_users[username]["items"]
+    login_sheets(username, "Online")
     print("Logged In!")
   else:
     print("Incorrect Username or Password\n")
@@ -126,4 +126,4 @@ def start():
     print("Action unavalible, please try again.\n")
     start()
 
-get_data()
+start()
