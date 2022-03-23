@@ -8,9 +8,5 @@ file = gspread.authorize(credentials)
 sheet = file.open("Python_MUO_Google_Sheet")
 sheet = sheet.sheet1
 
-username = user_data.keys()
-print(username)
-username = user_data[0]
-print(username)
-#row = user_data[username]
-#sheet.update_acell("F" + str(row), "Offline")
+row = list(user_data.values())[0]
+sheet.update_acell("F" + str(row), "Offline")
