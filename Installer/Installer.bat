@@ -12,4 +12,5 @@ echo Done
 python change_permissions.py
 
 del change_permissions.py
-del installer.bat
+del Installer.bat
+del Installer.sh
